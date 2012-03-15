@@ -5,7 +5,7 @@ module HealthGraph
     attr_accessor :body
     
     def self.included(includer)
-      includer.extend ClassMethods          
+      includer.extend ClassMethods
     end
         
     module ClassMethods
@@ -18,7 +18,7 @@ module HealthGraph
       def hash_attr_accessor(*symbols)
         attr_writer(*symbols)
         symbols.each do |symbol|
-          define_method(symbol) do            
+          define_method(symbol) do
             instance_variable_get("@#{symbol}")
           end
         end

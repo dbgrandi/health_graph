@@ -26,13 +26,13 @@ module HealthGraph
         
         case method.to_sym
         when :get, :delete
-          request.headers['Accept'] = accept_header          
+          request.headers['Accept'] = accept_header
           request.url(path, params)
         when :put, :post
           request.headers['Content-Type'] = accept_header
           request.path = path
           request.body = params.to_json unless params.empty?
-        end        
+        end
       end
       response
     end
@@ -46,7 +46,7 @@ module HealthGraph
         builder.use Faraday::Request::UrlEncoded
         builder.use Faraday::Request::JSON if method == :post
         builder.use Faraday::Response::Mashify
-        builder.use Faraday::Response::ParseJson        
+        builder.use Faraday::Response::ParseJson
         builder.adapter(HealthGraph.adapter)
       end
     end
